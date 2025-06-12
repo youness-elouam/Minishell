@@ -1,9 +1,9 @@
 #include "../../includes/minishell.h"
 
-t_syntax	**get_syntax_head(t_method method, t_syntax *syntax)
+t_cmd_lexer	**get_lexer_head(t_method method, t_cmd_lexer *syntax)
 {
-	static t_syntax	*head;
-	t_syntax		*tmp;
+	static t_cmd_lexer	*head;
+	t_cmd_lexer			*tmp;
 
 	if (method == SET)
 		head = syntax;
@@ -21,22 +21,22 @@ t_syntax	**get_syntax_head(t_method method, t_syntax *syntax)
 	return (&head);
 }
 
-void	add_syntax_node(t_syntax_type type, char *value)
+void	add_lexer_node(t_cmd_type type, char *value)
 {
-	t_syntax	*new_node;
-	t_syntax	**head;
-	t_syntax	*tmp;
+	t_cmd_lexer	*new_node;
+	t_cmd_lexer	**head;
+	t_cmd_lexer	*tmp;
 
-	if (type == CMD && !value)
+	if (type == WORD && !value)
 		return ;
-	head = get_syntax_head(GET, NULL);
+	head = get_lexer_head(GET, NULL);
 	tmp = *head;
-	new_node = malloc(sizeof(t_syntax));
+	new_node = malloc(sizeof(t_cmd_lexer));
 	new_node->type = type;
 	new_node->value = value;
 	new_node->next = NULL;
 	if (head == NULL || *head == NULL)
-		get_syntax_head(SET, new_node);
+		get_lexer_head(SET, new_node);
 	else
 	{
 		while (tmp->next)

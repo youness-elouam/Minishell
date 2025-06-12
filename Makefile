@@ -2,7 +2,8 @@ NAME = minishell
 
 FILES = ./main.c
 
-PARS = lexer/syntax_check.c lexer/syntax_list.c lexer/syntax_lexer.c
+PARS = lexer/syntax_check.c lexer/syntax_list.c lexer/syntax_lexer.c lexer/cmd_list.c \
+		utils/string.c lexer/cmd_lexer.c
 
 OBJS = $(FILES:.c=.o)
 
