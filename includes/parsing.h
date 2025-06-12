@@ -6,7 +6,7 @@
 /*   By: sloukili <sloukili@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 04:15:08 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/06/12 20:50:19 by sloukili         ###   ########.fr       */
+/*   Updated: 2025/06/12 22:05:10 by sloukili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_cmd_lexer
 	char				*value;
 	struct s_cmd_lexer	*next;
 }			t_cmd_lexer;
-
 
 typedef struct s_syntax
 {

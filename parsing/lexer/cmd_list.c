@@ -44,3 +44,77 @@ void	add_lexer_node(t_cmd_type type, char *value)
 		tmp->next = new_node;
 	}
 }
+
+void	free_cmd_node(t_cmd *cmd)
+{
+	int				i;
+	t_redirections	*tmp;
+
+	i = -1;
+	if (!cmd)
+		return ;
+	if (cmd->args != NULL)
+	{
+		while (cmd->args[++i])
+			free(cmd->args[i]);
+	}
+	if (cmd->cmd != NULL)
+		free(cmd->cmd);
+	if (cmd->path != NULL)
+		free(cmd->path);
+	if (cmd->redirections)
+	{
+		while (cmd->redirections)
+		{
+			tmp = cmd->redirections;
+			cmd->redirections = cmd->redirections->next;
+			free(tmp->value);
+			free(tmp);
+		}
+	}
+}
+
+t_cmd	**get_cmd_head(t_method method, t_cmd *syntax)
+{
+	static t_cmd	*head;
+	t_cmd			*tmp;
+
+	if (method == SET)
+		head = syntax;
+	else if (method == RESET)
+	{
+		while (head)
+		{
+			tmp = head;
+			head = head->next;
+			free_cmd_node(tmp);
+			free(tmp);
+		}
+	}
+	return (&head);
+}
+
+t_cmd	*add_cmd_node(char *name)
+{
+	t_cmd	*new_node;
+	t_cmd	**head;
+	t_cmd	*tmp;
+
+	head = get_cmd_head(GET, NULL);
+	tmp = *head;
+	new_node = malloc(sizeof(t_cmd));
+	new_node->cmd = name;
+	new_node->args = NULL;
+	new_node->redirections = NULL;
+	new_node->path = NULL;
+	new_node->next = NULL;
+	if (head == NULL || *head == NULL)
+		get_cmd_head(SET, new_node);
+	else
+	{
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new_node;
+	}
+	return (new_node);
+}

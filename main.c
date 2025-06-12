@@ -6,15 +6,14 @@
 /*   By: sloukili <sloukili@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 00:20:16 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/06/12 20:51:11 by sloukili         ###   ########.fr       */
+/*   Updated: 2025/06/12 22:37:58 by sloukili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/minishell.h"
 
-void print_cmd_data(t_syntax *cmd)
+void print_cmd_data()
 {
-	cmd_lexer(cmd);
 	t_cmd_lexer *cmd_lexer = *get_lexer_head(GET, NULL);
 	if (!cmd_lexer)
 	{
@@ -44,6 +43,8 @@ t_bool	cmd_exec(t_syntax *cmd)
 	cmd_lexer(cmd);
 	if (!check_cmd_logic())
 		return (false);
+	print_cmd_data(cmd);
+	get_lexer_head(RESET, NULL);
 	return (true);
 }
 

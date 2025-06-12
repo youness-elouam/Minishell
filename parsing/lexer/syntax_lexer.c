@@ -6,7 +6,7 @@
 /*   By: sloukili <sloukili@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:58:54 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/06/12 19:39:06 by sloukili         ###   ########.fr       */
+/*   Updated: 2025/06/12 22:37:10 by sloukili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	syntax_lexer(char *syntax)
 
 	cmd_start = 0;
 	i = 0;
+	if (!syntax)
+		return ;
 	while (syntax[i])
 	{
 		if (syntax[i] == '"' || syntax[i] == '\'')
