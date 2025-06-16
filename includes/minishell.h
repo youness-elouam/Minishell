@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sloukili <sloukili@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 04:07:40 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/06/12 22:09:15 by sloukili         ###   ########.fr       */
+/*   Updated: 2025/06/13 16:36:24 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include "parsing.h"
+# include "ft_malloc.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 
