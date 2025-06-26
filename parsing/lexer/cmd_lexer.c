@@ -76,6 +76,8 @@ void	cmd_lexer(t_syntax *cmd)
 		{
 			add_lexer_node(WORD, ft_substr(cmd->value, cmd_start, i - 1));
 			add_lexer_node(r_type, NULL);
+			if (r_type == R_HEREDOC || r_type == R_APPEND)
+				i++;
 			cmd_start = i + 1;
 		}
 		i++;

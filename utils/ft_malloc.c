@@ -1,5 +1,12 @@
 #include "../includes/minishell.h"
 
+
+void	malloc_panic()
+{
+	printf("Malloc Failed: please buy some extra ram\n");
+	exit(42);
+}
+
 t_malloc	**get_malloc_head(t_method	method, t_malloc *list)
 {
 	static t_malloc	*head;
@@ -18,20 +25,22 @@ t_malloc	**get_malloc_head(t_method	method, t_malloc *list)
 			free(tmp);
 		}
 	}
-	return (&head)
+	return (&head);
 }
 
-t_malloc	add_malloc_node(void *ptr)
+void	add_malloc_node(void *ptr)
 {
 	t_malloc	*new_node;
 	t_malloc	**head;
 	t_malloc	*tmp;
 
 	if (!ptr)
-		return(NULL);
+		return ;
 	head = get_malloc_head(GET, NULL);
 	tmp = *head;
 	new_node = malloc(sizeof(t_malloc));
+	if (!new_node)
+		malloc_panic();
 	new_node->ptr = ptr;
 	new_node->next = NULL;
 	if (head == NULL || *head == NULL)
@@ -49,16 +58,21 @@ void	ft_free(void *s)
 	t_malloc	*ptr;
 	t_malloc	*tmp;
 
-	ptr = get_malloc_head(GET,  NULL);
+	ptr = *get_malloc_head(GET,  NULL);
+	tmp = NULL;
 	while (ptr)
 	{
-		if (ptr->ptr == &s)
+		if (ptr->ptr == s)
 		{
-			tmp = ptr;
-			ptr->next = ptr->next->next;
-			free (tmp);
-			free (s);
+			if (tmp == NULL)
+				get_malloc_head(SET, ptr->next);
+			else
+				tmp->next = ptr->next;
+			free (ptr->ptr);
+			free (ptr);
+			break;
 		}
+		tmp = ptr;
 		ptr = ptr->next;
 	}
 }
@@ -69,7 +83,7 @@ void	*ft_malloc(size_t size)
 
 	ptr = malloc(size);
 	if (!ptr)
-		return (NULL);
+		malloc_panic();
 	add_malloc_node(ptr);
 	return(ptr);
 }

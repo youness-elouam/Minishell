@@ -81,7 +81,7 @@ void	ft_free(void *s)
 	tmp = NULL;
 	while (ptr)
 	{
-		if (ptr->ptr == &s)
+		if (ptr->ptr == s)
 		{
 			if (tmp == NULL)
 				get_malloc_head(SET, ptr->next);

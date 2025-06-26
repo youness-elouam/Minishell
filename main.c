@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sloukili <sloukili@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 00:20:16 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/06/12 22:37:58 by sloukili         ###   ########.fr       */
+/*   Updated: 2025/06/20 14:22:52 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	cmd_handling(char *line)
 	get_syntax_head(RESET, NULL);
 }
 
-int	main()
+void	minishell_loop(void)
 {
 	char		*line;
 
@@ -82,6 +82,21 @@ int	main()
 			cmd_handling(line);
 			free(line);
 		}
+	}
+}
+
+int	main(int ac, char **av, char **envp)
+{
+	(void)av;
+	(void)envp;
+	if (ac == 1)
+	{
+		minishell_loop();
+	}
+	else
+	{
+		printf("Error : minishell does not take arguments !!");
+		return (1);
 	}
 	return (0);
 }
