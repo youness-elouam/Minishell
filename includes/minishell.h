@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 04:07:40 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/06/13 16:36:24 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/06/26 23:39:41 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,11 @@ typedef struct s_cmd
 	char			*path;
 	struct s_cmd	*next;
 }			t_cmd;
+
+int		array_size(char **arr);
+char	*ft_strdup(char *s);
+void	free_array(char **arr);
+int		args_num(void);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 00:20:16 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/06/20 14:22:52 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/06/26 23:39:10 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void print_cmd_data()
 		puts("Cant parse the cmd");
 		return ;
 	}
+	printf("/////////////\n%d\n////////////\n", args_num());
 	while (cmd_lexer)
 	{
 		if (cmd_lexer->type == R_APPEND)
