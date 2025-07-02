@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_malloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/02 10:04:38 by yel-ouam          #+#    #+#             */
+/*   Updated: 2025/07/02 10:06:56 by yel-ouam         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
-
-void	malloc_panic()
+void	malloc_panic(void)
 {
 	printf("Malloc Failed: please buy some extra ram\n");
 	exit(42);
@@ -58,7 +69,7 @@ void	ft_free(void *s)
 	t_malloc	*ptr;
 	t_malloc	*tmp;
 
-	ptr = *get_malloc_head(GET,  NULL);
+	ptr = *get_malloc_head(GET, NULL);
 	tmp = NULL;
 	while (ptr)
 	{
@@ -70,7 +81,7 @@ void	ft_free(void *s)
 				tmp->next = ptr->next;
 			free (ptr->ptr);
 			free (ptr);
-			break;
+			break ;
 		}
 		tmp = ptr;
 		ptr = ptr->next;
@@ -85,5 +96,5 @@ void	*ft_malloc(size_t size)
 	if (!ptr)
 		malloc_panic();
 	add_malloc_node(ptr);
-	return(ptr);
+	return (ptr);
 }

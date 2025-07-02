@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sloukili <sloukili@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 04:15:08 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/06/12 22:05:10 by sloukili         ###   ########.fr       */
+/*   Updated: 2025/07/02 10:32:20 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,10 @@ void		syntax_lexer(char *syntax);
 t_cmd_lexer	**get_lexer_head(t_method method, t_cmd_lexer *syntax);
 void		add_lexer_node(t_cmd_type type, char *value);
 void		cmd_lexer(t_syntax *cmd);
-t_bool		check_cmd_logic();
-
+t_bool		check_cmd_logic(void);
 
 // Utils
-char	*ft_substr(char *str, int start, int end);
-t_bool	is_space(char c);
+char		*ft_substr(char *str, int start, int end);
+t_bool		is_space(char c);
 
 #endif

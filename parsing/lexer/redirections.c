@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirections.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/02 10:08:21 by yel-ouam          #+#    #+#             */
+/*   Updated: 2025/07/02 10:08:27 by yel-ouam         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 t_redirections	**get_redi_head(t_method method, t_redirections *syntax)
@@ -27,13 +39,11 @@ void	add_redi_node(t_cmd_type type, char *value)
 	t_redirections	**head;
 	t_redirections	*tmp;
 
-	if (type == WORD && !value)
-		return ;
 	head = get_redi_head(GET, NULL);
 	tmp = *head;
 	new_node = malloc(sizeof(t_redirections));
 	new_node->type = type;
-	new_node->value = value;
+	new_node->value = ft_strdup(value);
 	new_node->next = NULL;
 	if (head == NULL || *head == NULL)
 		get_redi_head(SET, new_node);

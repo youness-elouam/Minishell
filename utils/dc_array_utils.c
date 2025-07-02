@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 23:10:46 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/06/26 23:11:36 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/06/28 17:00:44 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*ft_strdup(char *s)
 	char	*rs;
 
 	len = ft_strlen(s);
-	rs = (char *)malloc((len + 1) * sizeof(char));
+	rs = malloc((len + 1) * sizeof(char));
 	if (!rs)
 		return (NULL);
 	ft_strcpy(rs, s);

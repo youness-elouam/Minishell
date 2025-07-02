@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cmd_lexer.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/02 10:13:19 by yel-ouam          #+#    #+#             */
+/*   Updated: 2025/07/02 10:13:21 by yel-ouam         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
-t_cmd_type get_lexer_type(char *cmd)
+t_cmd_type	get_lexer_type(char *cmd)
 {
 	if (!cmd || !cmd[0])
 		return (WORD);
@@ -29,9 +41,9 @@ void	unexpected_redirection(t_cmd_type type)
 		printf("Error: unexpected redirection at >\n");
 }
 
-t_bool	check_cmd_logic()
+t_bool	check_cmd_logic(void)
 {
-	t_cmd_lexer *cmd;
+	t_cmd_lexer	*cmd;
 	t_cmd_type	old;
 
 	old = WORD;

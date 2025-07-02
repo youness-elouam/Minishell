@@ -1,6 +1,6 @@
 NAME = minishell
 
-FILES = ./main.c ./utils/dynamic_array.c ./utils/dc_array_utils.c ./utils/args_num.c
+FILES = ./main.c ./utils/dynamic_array.c ./utils/dc_array_utils.c 
 
 PARS = lexer/syntax_check.c lexer/syntax_list.c lexer/syntax_lexer.c lexer/cmd_list.c \
 		utils/string.c lexer/cmd_lexer.c cmd.c lexer/redirections.c 
