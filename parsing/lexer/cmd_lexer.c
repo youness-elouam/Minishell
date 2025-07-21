@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:13:19 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/02 10:13:21 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/15 16:26:39 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,12 @@ void	cmd_lexer(t_syntax *cmd)
 			check_quotes(SET, cmd->value[i]);
 		else if (is_space(cmd->value[i]) && !check_quotes(GET, 0))
 		{
-			add_lexer_node(WORD, ft_substr(cmd->value, cmd_start, i - 1));
+			add_lexer_node(WORD, ft_nsubstr(cmd->value, cmd_start, i - 1));
 			cmd_start = i + 1;
 		}
 		else if (r_type != WORD && !check_quotes(GET, 0))
 		{
-			add_lexer_node(WORD, ft_substr(cmd->value, cmd_start, i - 1));
+			add_lexer_node(WORD, ft_nsubstr(cmd->value, cmd_start, i - 1));
 			add_lexer_node(r_type, NULL);
 			if (r_type == R_HEREDOC || r_type == R_APPEND)
 				i++;
@@ -95,5 +95,5 @@ void	cmd_lexer(t_syntax *cmd)
 		i++;
 	}
 	if (cmd_start < i)
-		add_lexer_node(WORD, ft_substr(cmd->value, cmd_start, i - 1));
+		add_lexer_node(WORD, ft_nsubstr(cmd->value, cmd_start, i - 1));
 }

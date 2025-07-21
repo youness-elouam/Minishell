@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 23:10:46 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/06/28 17:00:44 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/17 09:18:37 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ int	array_size(char **arr)
 	return (i);
 }
 
-size_t	ft_strlen(char *s)
-{
-	size_t	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
-		i++;
-	return (i);
-}
+//	size_t	ft_strlen(char *s)
+//	{
+//		size_t	i;
+//	
+//		i = 0;
+//		if (!s)
+//			return (0);
+//		while (s[i])
+//			i++;
+//		return (i);
+//	}
 
 void	ft_strcpy(char *dest, char *src)
 {
@@ -51,18 +51,18 @@ void	ft_strcpy(char *dest, char *src)
 	dest[i] = '\0';
 }
 
-char	*ft_strdup(char *s)
-{
-	size_t	len;
-	char	*rs;
-
-	len = ft_strlen(s);
-	rs = malloc((len + 1) * sizeof(char));
-	if (!rs)
-		return (NULL);
-	ft_strcpy(rs, s);
-	return (rs);
-}
+// char	*ft_strdup(char *s)
+// {
+// 	size_t	len;
+// 	char	*rs;
+// 
+// 	len = ft_strlen(s);
+// 	rs = malloc((len + 1) * sizeof(char));
+// 	if (!rs)
+// 		return (NULL);
+// 	ft_strcpy(rs, s);
+// 	return (rs);
+// }
 
 void	free_array(char **arr)
 {

@@ -1,41 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string.c                                           :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/02 10:07:40 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/15 16:52:56 by yel-ouam         ###   ########.fr       */
+/*   Created: 2025/05/31 09:42:04 by ael-boul          #+#    #+#             */
+/*   Updated: 2025/07/20 18:05:13 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "libft.h"
 
-char	*ft_nsubstr(char *str, int start, int end)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		size;
-	int		i;
-	char	*cmd;
+	size_t	i;
+	size_t	j;
+	char	*ptr;
 
-	size = end - start + 2;
-	if (size - 2 < 0)
+	if (s2 == NULL)
 		return (NULL);
-	cmd = malloc(sizeof(char) * size);
+	j = 0;
 	i = 0;
-	while (start <= end)
+	ptr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (ptr == NULL)
+		return (NULL);
+	if (s1)
 	{
-		cmd[i] = str[start];
-		start++;
-		i++;
+		while (s1[i])
+		{
+			ptr[i] = s1[i];
+			i++;
+		}
+		free((char *)s1);
 	}
-	cmd[i] = '\0';
-	return (cmd);
-}
-
-t_bool	is_space(char c)
-{
-	if (c == 32 || (c >= 9 && c <= 13))
-		return (true);
-	return (false);
+	while (s2[j])
+	{
+		ptr[i++] = s2[j++];
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }

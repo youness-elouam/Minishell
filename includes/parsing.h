@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 04:15:08 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/02 10:32:20 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/16 16:12:18 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,22 @@ typedef struct s_syntax
 	struct s_syntax	*next;
 }	t_syntax;
 
+typedef struct s_redirections
+{
+	t_cmd_type				type;
+	char					*value;
+	struct s_redirections	*next;
+}			t_redirections;
+
+typedef struct s_cmd
+{
+	char			*cmd;
+	char			**args;
+	t_redirections	*redirections;
+	char			*path;
+	struct s_cmd	*next;
+}			t_cmd;
+
 // LEXER
 t_syntax	**get_syntax_head(t_method method, t_syntax *syntax);
 void		add_syntax_node(t_syntax_type type, char *value);
@@ -68,7 +84,7 @@ void		cmd_lexer(t_syntax *cmd);
 t_bool		check_cmd_logic(void);
 
 // Utils
-char		*ft_substr(char *str, int start, int end);
+char		*ft_nsubstr(char *str, int start, int end);
 t_bool		is_space(char c);
 
 #endif
