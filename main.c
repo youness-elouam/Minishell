@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 00:20:16 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/21 21:11:56 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/24 21:27:07 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,8 +157,10 @@ int	minishell(t_mini *mini)
 	if (mini->start_cmd && !mini->start_cmd->next
 		&& is_builtin(mini->start_cmd->args[0]))
 	{
+		fd_reset(SET);
 		if (handle_redirs(mini->start_cmd->redirections, mini) == 0)
 			mini->ret = exec_builtin(mini->start_cmd->args, mini);
+		fd_reset(RESET);
 	}
 	else
 	{
@@ -192,16 +194,13 @@ int	minishell_loop(char **env)
 			add_history(line);
 			cmd_handling(line);
 			mini.start_cmd = *get_cmd_head(GET, NULL);
-			if (mini.start_cmd != NULL)
-			{
-				expander(mini.start_cmd->args);
+			if (mini.start_cmd != NULL && mini.start_cmd->cmd)
 				minishell(&mini);
-			}
 			//print_cmd_list();
+			free_array(g_n.my_env);
 			get_cmd_head(RESET, NULL);
 			get_redi_head(RESET, NULL);
 			free(line);
-			free(g_n.my_env);
 		}
 	}
 	free_env(mini.env);

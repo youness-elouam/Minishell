@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:03:28 by ael-boul          #+#    #+#             */
-/*   Updated: 2025/07/17 20:31:26 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/24 21:27:26 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,32 @@ void	handle_redirection(t_mini *mini, t_redirections *redir)
 	close(fd);
 }
 
+void	fd_reset(t_method method)
+{
+	static int	fd[2];
+
+	if (method == SET)
+	{
+		fd[0] = dup(STDIN_FILENO);
+		if(fd[0] == -1)
+			perror("error : dup");
+		fd[1] = dup(STDOUT_FILENO);
+		if(fd[1] == -1)
+			perror("error : dup");
+	}
+	if (method == RESET)
+	{
+		if (fd[0] && fd[0] != -1 && dup2(fd[0], STDIN_FILENO) == -1)
+			perror("error : dup2");
+		if (fd[1] && fd[1] != -1 && dup2(fd[1], STDOUT_FILENO) == -1)
+			perror("error : dup2");
+		fd[0] = 0;
+		fd[1] = 0;
+	}
+}
+
 int	handle_redirs(t_redirections *redir, t_mini *mini)
 {
-	//save
 	while (redir)
 	{
 		if (redir->type == R_OUT || redir->type == R_APPEND)
@@ -95,6 +118,5 @@ int	handle_redirs(t_redirections *redir, t_mini *mini)
 			heredoc(mini, redir);
 		redir = redir->next;
 	}
-	//restore
 	return (0);
 }

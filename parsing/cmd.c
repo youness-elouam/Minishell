@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 16:09:50 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/02 10:28:29 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/23 21:22:46 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_cmd	**get_cmd_head(t_method method, t_cmd *syntax)
 			head = head->next;
 			if (tmp->cmd != NULL)
 				free(tmp->cmd);
+			if (tmp->args != NULL)
+				free(tmp->args);
 			tmp->redirections = NULL;
 			free(tmp);
 		}

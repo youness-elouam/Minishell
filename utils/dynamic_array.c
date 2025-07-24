@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 20:46:44 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/06/28 17:01:20 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/22 15:09:12 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	**dc_array(char **arr, char *s)
 	char	**new;
 
 	i = 0;
+	if (!s)
+		return (arr);
 	new = malloc(sizeof(char *) * (array_size(arr) + 2));
 	if (!arr)
 	{

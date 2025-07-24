@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 23:10:46 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/17 09:18:37 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/23 19:01:09 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	array_size(char **arr)
 	int	i;
 
 	i = 0;
-	if (!arr)
+	if (!arr || !arr[i])
 		return (0);
 	while (arr[i])
 		i++;
@@ -71,5 +71,6 @@ void	free_array(char **arr)
 	i = 0;
 	while (arr[i])
 		free(arr[i++]);
-	free(arr);
+	if (arr)
+		free(arr);
 }

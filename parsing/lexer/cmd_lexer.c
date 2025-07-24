@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:13:19 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/15 16:26:39 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/24 16:56:01 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	cmd_lexer(t_syntax *cmd)
 
 	cmd_start = 0;
 	i = 0;
+	cmd->value = expander(cmd->value);
 	while (cmd->value[i])
 	{
 		r_type = get_lexer_type(&(cmd->value[i]));

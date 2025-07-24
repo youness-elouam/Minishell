@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 09:42:04 by ael-boul          #+#    #+#             */
-/*   Updated: 2025/07/20 18:05:13 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/23 18:53:50 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		ptr[i++] = s2[j++];
 	}
 	ptr[i] = '\0';
+	//free((char*)s1);
+	//free((char*)s2);
 	return (ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 04:07:40 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/19 20:08:25 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/24 21:27:49 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void			cmd_list(t_cmd_lexer *cmd_lx);
 int				n_node(t_env *env);
 char			**env_list_to_array(t_env *env);
 char			*ft_getenv(const char *name);
-void			expander(char **args);
+char			*expander(char *args);
+void			fd_reset(t_method method);
 
 #endif

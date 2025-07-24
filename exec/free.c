@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:21:59 by ael-boul          #+#    #+#             */
-/*   Updated: 2025/07/16 16:01:35 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/22 12:30:23 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	free_tab(char **tab)
 	int	i;
 
 	i = 0;
+	if (!tab)
+		return;
 	while (tab[i])
 	{
 		if (tab[i])

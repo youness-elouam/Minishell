@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 20:56:51 by ael-boul          #+#    #+#             */
-/*   Updated: 2025/07/19 15:13:25 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/24 16:24:31 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ int	ft_env(t_env *env)
 {
 	while (env)
 	{
-		if (env->exported == 0 && env->value != NULL)
+		if (env->value != NULL)
 			ft_putendl(env->value);
-		printf("\n-------------------------------------\n");
 		env = env->next;
 	}
 	return (0);

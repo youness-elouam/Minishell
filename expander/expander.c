@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:20:42 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/21 19:39:44 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/24 15:59:19 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*xpn_var(char *s)
 		if(s[i] == '$')
 		{
 			i++;
-			while (s[i] && s[i] != ' ')
+			while (s[i] && s[i] != ' ' && ft_isprint(s[i]))
 			{
 				if (s[i] == '\'')
 					break;
@@ -88,31 +88,32 @@ char	*is_expand(char *arg)
 	}
 	if (t != i + 1)
 		tmp = ft_strjoin(tmp, ft_substr(arg, t, (i - t)));
-	free (arg);
 	return(tmp);
 }
 
-void	expander(char **args)
+char	*expander(char *args)
 {
 	int		i;
-	int		j;
+	int		t;
+	char	*tmp;
 
 	i = 0;
-	j = 0;
+	t = 0;
 	while (args[i])
 	{
-		j = 0;
-		while (args[i][j])
+		if (args[i] == '\'')
+		check_quotes(SET, args[i]);
+		if(args[i] == '$' && (ft_isprint(args[i + 1]) || args[i + 1] == '$'))
 		{
-			if (args[i][0] == '\'')
-				break;
-			if(args[i][j] == '$' && (ft_isalnum(args[i][j + 1]) || args[i][j + 1] == '$'))
-			{
-				args[i] = is_expand(args[i]);
-				break;
-			}
-			j++;
+			if (!check_quotes(GET, 0))
+			tmp = is_expand(args);
+			t = 1;
 		}
 		i++;
 	}
+	if (t == 0)
+	return(args);
+	free(args);
+	args = NULL;
+	return(tmp);
 }
