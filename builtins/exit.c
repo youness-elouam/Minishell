@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:21:43 by ael-boul          #+#    #+#             */
-/*   Updated: 2025/07/23 21:15:22 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/26 16:22:44 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ void	ft_exit(t_mini *mini, char **cmd)
 	free_env(mini->secret_env);
 	get_cmd_head(RESET, NULL);
 	get_redi_head(RESET, NULL);
+	get_malloc_head(RESET, NULL);
 	exit(mini->ret);
 }

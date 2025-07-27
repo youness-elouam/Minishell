@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:13:19 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/24 16:56:01 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/27 01:12:18 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,43 @@ t_bool	check_cmd_logic(void)
 	return (true);
 }
 
+void	rm_quotes(void)
+{
+	t_cmd_lexer *cmd;
+
+	cmd = *get_lexer_head(GET, NULL);
+	while(cmd)
+	{
+		cmd->value = remov_quotes(cmd->value);
+		cmd = cmd->next;
+	}
+}
+
+void	mask_quotes(char **arg)
+{
+	int		i;
+	char	c;
+	char	s;
+
+	i = 0;
+	c = 0;
+	while((*arg)[i])
+	{
+		if(c == 0)
+			if ((*arg)[i] == '\"' || (*arg)[i] == '\'')
+			{
+				c = (*arg)[i];
+				if (c == '\'')
+					s = -1;
+				if (c == '\"')
+					s = -3;
+			}
+		if((*arg)[i] == c)
+			(*arg)[i] = s;
+		i++;
+	}
+}
+
 void	cmd_lexer(t_syntax *cmd)
 {
 	int			cmd_start;
@@ -74,11 +111,13 @@ void	cmd_lexer(t_syntax *cmd)
 
 	cmd_start = 0;
 	i = 0;
-	cmd->value = expander(cmd->value);
+	mask_quotes(&cmd->value);
+	expander(&cmd->value);
+	check_quotes(RESET, 0);
 	while (cmd->value[i])
 	{
 		r_type = get_lexer_type(&(cmd->value[i]));
-		if (cmd->value[i] == '"' || cmd->value[i] == '\'')
+		if (cmd->value[i] == '"' || cmd->value[i] == '\'' || cmd->value[i] == -3 || cmd->value[i] == -1)
 			check_quotes(SET, cmd->value[i]);
 		else if (is_space(cmd->value[i]) && !check_quotes(GET, 0))
 		{
@@ -97,4 +136,5 @@ void	cmd_lexer(t_syntax *cmd)
 	}
 	if (cmd_start < i)
 		add_lexer_node(WORD, ft_nsubstr(cmd->value, cmd_start, i - 1));
+	rm_quotes();
 }

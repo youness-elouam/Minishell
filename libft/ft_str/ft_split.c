@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-boul <ael-boul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 09:41:39 by ael-boul          #+#    #+#             */
-/*   Updated: 2025/07/03 15:49:29 by ael-boul         ###   ########.fr       */
+/*   Updated: 2025/07/27 03:00:00 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../../includes/minishell.h"
+
 
 static size_t	count_words(const char *str, char sep)
 {
@@ -87,7 +89,7 @@ char	**ft_split(const char *s, char c)
 
 	if (!s)
 		return (NULL);
-	p = (char **)malloc((count_words(s, c) + 1) * sizeof(char *));
+	p = (char **)ft_malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (!p)
 		return (NULL);
 	p = ft_fillwords(p, s, c);

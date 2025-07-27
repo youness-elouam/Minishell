@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 23:10:46 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/23 19:01:09 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/26 16:09:07 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	free_array(char **arr)
 
 	i = 0;
 	while (arr[i])
-		free(arr[i++]);
+		ft_free(arr[i++]);
 	if (arr)
-		free(arr);
+		ft_free(arr);
 }

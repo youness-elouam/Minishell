@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:07:40 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/15 16:52:56 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/26 17:42:29 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_nsubstr(char *str, int start, int end)
 	size = end - start + 2;
 	if (size - 2 < 0)
 		return (NULL);
-	cmd = malloc(sizeof(char) * size);
+	cmd = ft_malloc(sizeof(char) * size);
 	i = 0;
 	while (start <= end)
 	{

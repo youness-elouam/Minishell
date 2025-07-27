@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:17:18 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/06/13 16:17:28 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/26 16:13:27 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ t_syntax	**get_syntax_head(t_method method, t_syntax *syntax)
 			tmp = head;
 			head = head->next;
 			if (tmp->value != NULL)
-				free(tmp->value);
-			free(tmp);
+				ft_free(tmp->value);
+			ft_free(tmp);
 		}
 	}
 	return (&head);
@@ -43,7 +43,7 @@ void	add_syntax_node(t_syntax_type type, char *value)
 		return ;
 	head = get_syntax_head(GET, NULL);
 	tmp = *head;
-	new_node = malloc(sizeof(t_syntax));
+	new_node = ft_malloc(sizeof(t_syntax));
 	new_node->type = type;
 	new_node->value = value;
 	new_node->next = NULL;

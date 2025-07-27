@@ -1,40 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dynamic_array.c                                    :+:      :+:    :+:   */
+/*   remov_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/26 20:46:44 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/26 16:08:44 by yel-ouam         ###   ########.fr       */
+/*   Created: 2025/07/25 11:50:52 by yel-ouam          #+#    #+#             */
+/*   Updated: 2025/07/27 01:05:30 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	**dc_array(char **arr, char *s)
+char	*remov_quotes(char	*value)
 {
 	int		i;
-	char	**new;
+	int		j;
+	char	c;
 
 	i = 0;
-	if (!s)
-		return (arr);
-	new = ft_malloc(sizeof(char *) * (array_size(arr) + 2));
-	if (!arr)
+	j = 0;
+	c = 0;
+	while(value[i])
 	{
-		new[0] = ft_strdup(s);
-		new[1] = NULL;
-		return (new);
-	}
-	while (arr[i])
-	{
-		new[i] = ft_strdup(arr[i]);
+		if(value[i] == -3 || value[i] == -1)
+		{
+			c = value[i];
+			i++;
+		}
+		while(value[i] != c && value[i])
+		{
+			if(c == 0)
+				if (value[i] == -3 || value[i] == -1)
+					{
+						c = value[i];
+						i++;
+					}
+			if(value[i] != c)
+				value[j++] = value[i++];
+		}
+		if (!value[i])
+			break;
 		i++;
 	}
-	if (s)
-		new[i++] = ft_strdup(s);
-	new[i] = NULL;
-	free_array(arr);
-	return (new);
+	value[j] = '\0';
+	return (value);
 }

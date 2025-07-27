@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:08:21 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/02 10:08:27 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/26 16:12:36 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ t_redirections	**get_redi_head(t_method method, t_redirections *syntax)
 			tmp = head;
 			head = head->next;
 			if (tmp->value != NULL)
-				free(tmp->value);
-			free(tmp);
+				ft_free(tmp->value);
+			ft_free(tmp);
 		}
 	}
 	return (&head);
@@ -41,7 +41,7 @@ void	add_redi_node(t_cmd_type type, char *value)
 
 	head = get_redi_head(GET, NULL);
 	tmp = *head;
-	new_node = malloc(sizeof(t_redirections));
+	new_node = ft_malloc(sizeof(t_redirections));
 	new_node->type = type;
 	new_node->value = ft_strdup(value);
 	new_node->next = NULL;

@@ -2,10 +2,10 @@ NAME = minishell
 
 FILES = ./main.c ./utils/dynamic_array.c ./utils/dc_array_utils.c ./exec/path.c ./exec/bin.c ./exec/fd.c ./exec/free.c ./exec/global.c ./exec/redir.c ./exec/sort_env.c ./exec/exec_help.c ./exec/builtin.c \
         builtins/cd.c builtins/echo.c builtins/env.c builtins/exit.c builtins/export.c \
-		builtins/help_exp.c builtins/pwd.c builtins/unset.c expander/expander.c expander/ft_getenv.c
+		builtins/help_exp.c builtins/pwd.c builtins/unset.c expander/expander.c expander/ft_getenv.c utils/ft_malloc.c
 
 PARS = lexer/syntax_check.c lexer/syntax_list.c lexer/syntax_lexer.c lexer/cmd_list.c \
-		utils/string.c lexer/cmd_lexer.c cmd.c lexer/redirections.c 
+		utils/string.c lexer/cmd_lexer.c cmd.c lexer/redirections.c remov_quotes.c
 
 OBJS = $(FILES:.c=.o)
 

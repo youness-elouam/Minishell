@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 20:56:51 by ael-boul          #+#    #+#             */
-/*   Updated: 2025/07/24 16:24:31 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/27 03:12:14 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_env(t_env *env)
 {
 	while (env)
 	{
-		if (env->value != NULL)
+		if ((env->exported && ft_strchr(env->value, '=')) || (env->value && !env->exported))
 			ft_putendl(env->value);
 		env = env->next;
 	}
@@ -65,7 +65,7 @@ int	secret_env_init(t_mini *mini, char **env_array)
 	i = 1;
 	while (env_array && env_array[0] && env_array[i])
 	{
-		new = malloc(sizeof(t_env));
+		new = ft_malloc(sizeof(t_env));
 		if (!new)
 			return (1);
 		new->value = ft_strdup(env_array[i]);
@@ -83,7 +83,7 @@ int	env_init(t_mini *mini, char **env_array)
 	t_env	*new;
 	int		i;
 
-	env = malloc(sizeof(t_env));
+	env = ft_malloc(sizeof(t_env));
 	if (!env)
 		return (1);
 	env->value = ft_strdup(env_array[0]);
@@ -92,7 +92,7 @@ int	env_init(t_mini *mini, char **env_array)
 	i = 1;
 	while (env_array && env_array[0] && env_array[i])
 	{
-		new = malloc(sizeof(t_env));
+		new = ft_malloc(sizeof(t_env));
 		if (!new)
 			return (1);
 		new->value = ft_strdup(env_array[i]);

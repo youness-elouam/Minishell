@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 00:20:16 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/24 21:27:07 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/26 21:35:11 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,7 @@ int	minishell_loop(char **env)
 			free_array(g_n.my_env);
 			get_cmd_head(RESET, NULL);
 			get_redi_head(RESET, NULL);
+			get_malloc_head(RESET, NULL);
 			free(line);
 		}
 	}

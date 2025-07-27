@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 19:40:28 by ael-boul          #+#    #+#             */
-/*   Updated: 2025/07/17 23:20:46 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/25 15:53:14 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ void	close_and_update_pipe(int *prev_pipe, int *pipefd, int has_next)
 
 static void	setup_pipes_and_redirs(t_cmd *cmd, t_mini *mini, t_exec_info info)
 {
-	printf("///////////////////// fd1 = %d ////////////\n", info.prev_pipe);
 	if (info.prev_pipe != -1)
 	{
-		printf("///////////////////// fd = %d ////////////\n", info.prev_pipe);
 		dup2(info.prev_pipe, STDIN_FILENO);
 		close(info.prev_pipe);
 	}

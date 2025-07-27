@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:20:42 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/24 15:59:19 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/27 01:04:36 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ char	*xpn_var(char *s)
 		if(s[i] == '$')
 		{
 			i++;
-			while (s[i] && s[i] != ' ' && ft_isprint(s[i]))
+			while (s[i] && ft_isalnum(s[i]))
 			{
-				if (s[i] == '\'')
+				if (s[i] == -1 || s[i] == '\'')
 					break;
 				i++;
 				size++;
 			}
-			if (s[(i - 1)] == '\"')
+			if (s[(i - 1)] == -3 || s[(i - 1)] == '\"')
 			{
 				i--;
 				size--;
@@ -80,6 +80,7 @@ char	*is_expand(char *arg)
 		{
 			tmp = ft_strjoin(tmp, ft_substr(arg, t, (i - t)));
 			var = ft_strdup(xpn_var(arg + i));
+			printf("(var)-->[%s]\n(exp_var)-->[%s]\n\n", var, ft_getenv(var));
 			tmp = ft_strjoin(tmp, ft_getenv(var));
 			i += ft_strlen(var);
 			t = i + 1;
@@ -91,29 +92,30 @@ char	*is_expand(char *arg)
 	return(tmp);
 }
 
-char	*expander(char *args)
+int	expander(char **args)
 {
 	int		i;
 	int		t;
-	char	*tmp;
 
 	i = 0;
 	t = 0;
-	while (args[i])
+	check_quotes(RESET, 0);
+	while ((*args)[i])
 	{
-		if (args[i] == '\'')
-		check_quotes(SET, args[i]);
-		if(args[i] == '$' && (ft_isprint(args[i + 1]) || args[i + 1] == '$'))
+		if ((*args)[i] == -1)
+			check_quotes(SET, (*args)[i]);
+		if((*args)[i] == '$' && (ft_isprint((*args)[i + 1]) || (*args)[i + 1] == '$'))
 		{
 			if (!check_quotes(GET, 0))
-			tmp = is_expand(args);
-			t = 1;
+			{
+				*args = is_expand(*args);
+				t = 1;
+				break;
+			}
 		}
 		i++;
 	}
 	if (t == 0)
-	return(args);
-	free(args);
-	args = NULL;
-	return(tmp);
+		return(0);
+	return(1);
 }

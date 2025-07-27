@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:08:07 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/02 10:08:14 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/26 13:01:44 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ t_cmd_lexer	**get_lexer_head(t_method method, t_cmd_lexer *syntax)
 			tmp = head;
 			head = head->next;
 			if (tmp->value != NULL)
-				free(tmp->value);
-			free(tmp);
+			{
+				ft_free(tmp->value);
+				tmp->value = NULL;
+			}
+			ft_free(tmp);
 		}
 	}
 	return (&head);
@@ -43,7 +46,7 @@ void	add_lexer_node(t_cmd_type type, char *value)
 		return ;
 	head = get_lexer_head(GET, NULL);
 	tmp = *head;
-	new_node = malloc(sizeof(t_cmd_lexer));
+	new_node = ft_malloc(sizeof(t_cmd_lexer));
 	new_node->type = type;
 	new_node->value = value;
 	new_node->next = NULL;

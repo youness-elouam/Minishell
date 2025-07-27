@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:01:36 by ael-boul          #+#    #+#             */
-/*   Updated: 2025/07/16 16:03:13 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/25 15:05:20 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	magic_box(char *path, t_cmd *cmd, t_env *env, t_mini *mini)
 	char	**env_array;
 	char	*env_str;
 
+	(void)mini;
 	env_str = env_to_str(env);
 	env_array = ft_split(env_str, '\n');
 	ft_memdel(env_str);

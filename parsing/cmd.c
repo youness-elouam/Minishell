@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 16:09:50 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/23 21:22:46 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/26 20:36:36 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ t_cmd	**get_cmd_head(t_method method, t_cmd *syntax)
 			tmp = head;
 			head = head->next;
 			if (tmp->cmd != NULL)
-				free(tmp->cmd);
+				ft_free(tmp->cmd);
 			if (tmp->args != NULL)
-				free(tmp->args);
+				ft_free(tmp->args);
 			tmp->redirections = NULL;
-			free(tmp);
+			ft_free(tmp);
 		}
 	}
 	return (&head);
@@ -43,7 +43,7 @@ void	add_cmd_node(t_cmd	**new_node)
 
 	head = get_cmd_head(GET, NULL);
 	tmp = *head;
-	(*new_node) = malloc(sizeof(t_cmd));
+	(*new_node) = ft_malloc(sizeof(t_cmd));
 	(*new_node)->cmd = NULL;
 	(*new_node)->args = NULL;
 	(*new_node)->redirections = NULL;
@@ -62,6 +62,7 @@ void	cmd_list(t_cmd_lexer *cmd_lx)
 {
 	t_cmd	*cmd;
 	int		first_arg;
+	//char	*r_quote;
 
 	first_arg = 0;
 	add_cmd_node(&cmd);

@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:58:54 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/15 16:26:56 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/27 01:24:20 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	syntax_lexer(char *syntax)
 	i = 0;
 	if (!syntax)
 		return ;
+	check_quotes(RESET, 0);
 	while (syntax[i])
 	{
 		if (syntax[i] == '"' || syntax[i] == '\'')

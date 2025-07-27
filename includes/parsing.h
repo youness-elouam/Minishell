@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 04:15:08 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/16 16:12:18 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/25 12:01:18 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ t_bool		check_cmd_logic(void);
 // Utils
 char		*ft_nsubstr(char *str, int start, int end);
 t_bool		is_space(char c);
+char		*remov_quotes(char	*value);
 
 #endif

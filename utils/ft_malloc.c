@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:04:38 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/02 10:06:56 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/27 03:03:22 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ t_malloc	**get_malloc_head(t_method	method, t_malloc *list)
 			tmp = head;
 			head = head->next;
 			if (tmp->ptr != NULL)
-				free(tmp->ptr);
-			free(tmp);
+				ft_free(tmp->ptr);
+			ft_free(tmp);
 		}
+		return(NULL);
 	}
 	return (&head);
 }

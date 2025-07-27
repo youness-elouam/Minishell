@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 18:01:46 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/20 18:00:04 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/26 16:10:21 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**env_list_to_array(t_env *env)
 	int		i;
 
 	i = 0;
-	my_envi = malloc(sizeof(char*) * (n_node(env) + 1));
+	my_envi = ft_malloc(sizeof(char*) * (n_node(env) + 1));
 	while (env)
 	{
 		my_envi[i] = ft_strdup(env->value);
