@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:13:19 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/27 01:12:18 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/28 16:19:51 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ t_cmd_type	get_lexer_type(char *cmd)
 		return (R_OUT);
 	return (WORD);
 }
-
-// ls > < sq
 
 void	unexpected_redirection(t_cmd_type type)
 {
@@ -66,43 +64,6 @@ t_bool	check_cmd_logic(void)
 	return (true);
 }
 
-void	rm_quotes(void)
-{
-	t_cmd_lexer *cmd;
-
-	cmd = *get_lexer_head(GET, NULL);
-	while(cmd)
-	{
-		cmd->value = remov_quotes(cmd->value);
-		cmd = cmd->next;
-	}
-}
-
-void	mask_quotes(char **arg)
-{
-	int		i;
-	char	c;
-	char	s;
-
-	i = 0;
-	c = 0;
-	while((*arg)[i])
-	{
-		if(c == 0)
-			if ((*arg)[i] == '\"' || (*arg)[i] == '\'')
-			{
-				c = (*arg)[i];
-				if (c == '\'')
-					s = -1;
-				if (c == '\"')
-					s = -3;
-			}
-		if((*arg)[i] == c)
-			(*arg)[i] = s;
-		i++;
-	}
-}
-
 void	cmd_lexer(t_syntax *cmd)
 {
 	int			cmd_start;
@@ -117,7 +78,8 @@ void	cmd_lexer(t_syntax *cmd)
 	while (cmd->value[i])
 	{
 		r_type = get_lexer_type(&(cmd->value[i]));
-		if (cmd->value[i] == '"' || cmd->value[i] == '\'' || cmd->value[i] == -3 || cmd->value[i] == -1)
+		if (cmd->value[i] == '"' || cmd->value[i] == '\''
+			|| cmd->value[i] == -3 || cmd->value[i] == -1)
 			check_quotes(SET, cmd->value[i]);
 		else if (is_space(cmd->value[i]) && !check_quotes(GET, 0))
 		{

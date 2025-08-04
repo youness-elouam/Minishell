@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/27 18:44:13 by yel-ouam          #+#    #+#             */
+/*   Updated: 2025/07/27 18:46:25 by yel-ouam         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef EXEC_H
 # define EXEC_H
 
@@ -81,8 +93,7 @@ int							change_value(t_env *env, const char *arg);
 int							is_var_exist(t_env *env, const char *arg);
 int							handle_redirs(t_redirections *redir, t_mini *mini);
 char						*get_cmd_path(char *cmd, t_env *env);
-int							magic_box(char *path, t_cmd *cmd, t_env *env,
-								t_mini *mini);
+int							magic_box(char *path, t_cmd *cmd, t_env *env);
 int							env_init(t_mini *mini, char **env_array);
 void						free_env(t_env *env);
 int							secret_env_init(t_mini *mini, char **env_array);

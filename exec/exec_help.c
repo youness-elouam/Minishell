@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 19:40:28 by ael-boul          #+#    #+#             */
-/*   Updated: 2025/07/25 15:53:14 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/27 21:54:11 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,17 @@ static void	setup_pipes_and_redirs(t_cmd *cmd, t_mini *mini, t_exec_info info)
 		handle_redirs(cmd->redirections, mini);
 }
 
- void	exec_child(t_cmd *cmd, t_mini *mini, t_exec_info info)
+void	exec_child(t_cmd *cmd, t_mini *mini, t_exec_info info)
 {
 	char	*path;
 
+	if (cmd->args && is_dir(cmd->args[0]))
+	{
+		ft_putstr_fd(cmd->args[0], STDERR_FILENO);
+		ft_putendl_fd(": Is a directory", STDERR_FILENO);
+		mini->ret = 126;
+		return ;
+	}
 	setup_pipes_and_redirs(cmd, mini, info);
 	path = get_cmd_path(cmd->args[0], mini->env);
 	if (is_builtin(cmd->args[0]))
@@ -54,9 +61,10 @@ static void	setup_pipes_and_redirs(t_cmd *cmd, t_mini *mini, t_exec_info info)
 	{
 		ft_putstr_fd(cmd->args[0], STDERR_FILENO);
 		ft_putendl_fd(": command not found", STDERR_FILENO);
+		get_malloc_head(RESET, NULL);
 		mini->ret = 127;
-		exit(mini->ret);
+		return ;
 	}
-	magic_box(path, cmd, mini->env, mini);
-	exit(1);
+	magic_box(path, cmd, mini->env);
+	return ;
 }

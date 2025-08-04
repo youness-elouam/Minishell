@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   global.c                                           :+:      :+:    :+:   */
+/*   is_dir.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/29 09:46:20 by ael-boul          #+#    #+#             */
-/*   Updated: 2025/08/04 13:30:25 by yel-ouam         ###   ########.fr       */
+/*   Created: 2025/07/27 18:26:39 by yel-ouam          #+#    #+#             */
+/*   Updated: 2025/07/27 21:11:31 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-t_const	g_n = {.error = 1, .success = 0, .buff_size = 4096,
-		.stdin_fd = 0, .stdout_fd = 1, .stderr_fd = 2,};
+bool	is_dir(char *filename)
+{
+	struct stat	pro;
+
+	if (stat(filename, &pro) == -1)
+		return 0;
+	return (S_ISDIR(pro.st_mode));
+}

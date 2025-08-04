@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 09:42:21 by ael-boul          #+#    #+#             */
-/*   Updated: 2025/07/20 15:20:38 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/27 20:25:44 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t	ft_strlen(const char *s)
 
 	len = 0;
 	if (!s)
-		return(0);
+		return (0);
 	while (s[len] != '\0')
 		len++;
 	return (len);

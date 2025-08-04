@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:21:22 by ael-boul          #+#    #+#             */
-/*   Updated: 2025/07/24 17:08:47 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/27 21:49:54 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	ft_cd(char **args)
 	{
 		if (chdir(ft_getenv("HOME")) < 0)
 		{
-			ft_putstr_fd("cd: relative or absolute path required\n", STDERR_FILENO);
+			ft_putstr_fd("cd: relative or absolute path required\n",
+				STDERR_FILENO);
 			return (1);
 		}
 		return (0);

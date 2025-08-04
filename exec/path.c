@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:37:14 by ael-boul          #+#    #+#             */
-/*   Updated: 2025/07/16 16:01:18 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/27 17:44:03 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*check_direct_path(char *cmd)
 {
 	if (strchr(cmd, '/'))
 	{
-		if (access(cmd, X_OK) == 0)
+		if (access(cmd, X_OK && F_OK) == 0)
 			return (ft_strdup(cmd));
 		else
 			return (NULL);
@@ -49,7 +49,7 @@ static char	*search_in_path(char *cmd, char *path_env)
 	int		i;
 
 	paths = ft_split(path_env, ':');
-	if (!paths)
+	if (!paths || !cmd[0])
 		return (NULL);
 	i = 0;
 	while (paths[i])
@@ -57,7 +57,7 @@ static char	*search_in_path(char *cmd, char *path_env)
 		full_path = join_path(paths[i], cmd);
 		if (!full_path)
 			break ;
-		if (access(full_path, X_OK) == 0)
+		if (access(full_path, X_OK && F_OK) == 0)
 		{
 			free_tab(paths);
 			return (full_path);
@@ -94,30 +94,30 @@ char	*get_cmd_path(char *cmd, t_env *env)
 	return (search_in_path(cmd, path_env));
 }
 
-int	error_message(char *path)
-{
-	DIR	*folder;
-	int	fd;
-	int	ret;
+// int	error_message(char *path)
+// {
+// 	DIR	*folder;
+// 	int	fd;
+// 	int	ret;
 
-	fd = open(path, O_WRONLY);
-	folder = opendir(path);
-	ft_putstr_fd("minishell: ", g_n.stderr_fd);
-	ft_putstr_fd(path, g_n.stderr_fd);
-	if (ft_strchr(path, '/') == NULL)
-		ft_putendl_fd(": command not found", g_n.stderr_fd);
-	else if (fd == -1 && folder == NULL)
-		ft_putendl_fd(": No such file or directory", g_n.stderr_fd);
-	else if (fd == -1 && folder != NULL)
-		ft_putendl_fd(": is a directory", g_n.stderr_fd);
-	else if (fd != -1 && folder == NULL)
-		ft_putendl_fd(": Permission denied", g_n.stderr_fd);
-	if (ft_strchr(path, '/') == NULL || (fd == -1 && folder == NULL))
-		ret = g_n.unknown_command;
-	else
-		ret = g_n.is_directory;
-	if (folder)
-		closedir(folder);
-	ft_close(fd);
-	return (ret);
-}
+// 	fd = open(path, O_WRONLY);
+// 	folder = opendir(path);
+// 	ft_putstr_fd("minishell: ", g_n.stderr_fd);
+// 	ft_putstr_fd(path, g_n.stderr_fd);
+// 	if (ft_strchr(path, '/') == NULL)
+// 		ft_putendl_fd(": command not found", g_n.stderr_fd);
+// 	else if (fd == -1 && folder == NULL)
+// 		ft_putendl_fd(": No such file or directory", g_n.stderr_fd);
+// 	else if (fd == -1 && folder != NULL)
+// 		ft_putendl_fd(": is a directory", g_n.stderr_fd);
+// 	else if (fd != -1 && folder == NULL)
+// 		ft_putendl_fd(": Permission denied", g_n.stderr_fd);
+// 	if (ft_strchr(path, '/') == NULL || (fd == -1 && folder == NULL))
+// 		ret = g_n.unknown_command;
+// 	else
+// 		ret = g_n.is_directory;
+// 	if (folder)
+// 		closedir(folder);
+// 	ft_close(fd);
+// 	return (ret);
+// }

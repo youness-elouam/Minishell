@@ -6,11 +6,11 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 11:50:52 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/27 01:05:30 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/31 16:46:06 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 char	*remov_quotes(char	*value)
 {
@@ -21,26 +21,20 @@ char	*remov_quotes(char	*value)
 	i = 0;
 	j = 0;
 	c = 0;
-	while(value[i])
+	while (value[i])
 	{
-		if(value[i] == -3 || value[i] == -1)
+		if (value[i] == -3 || value[i] == -1)
+			c = value[i++];
+		while (value[i] != c && value[i])
 		{
-			c = value[i];
-			i++;
-		}
-		while(value[i] != c && value[i])
-		{
-			if(c == 0)
+			if (c == 0)
 				if (value[i] == -3 || value[i] == -1)
-					{
-						c = value[i];
-						i++;
-					}
-			if(value[i] != c)
+					c = value[i++];
+			if (value[i] != c && value[i])
 				value[j++] = value[i++];
 		}
 		if (!value[i])
-			break;
+			break ;
 		i++;
 	}
 	value[j] = '\0';

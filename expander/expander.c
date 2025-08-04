@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:20:42 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/27 01:04:36 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/27 21:37:01 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,10 @@ char	*is_expand(char *arg)
 	var = NULL;
 	while (arg[i])
 	{
-		if (arg[i] == '$')
+		if (arg[i] == '$' && arg[i + 1])
 		{
 			tmp = ft_strjoin(tmp, ft_substr(arg, t, (i - t)));
 			var = ft_strdup(xpn_var(arg + i));
-			printf("(var)-->[%s]\n(exp_var)-->[%s]\n\n", var, ft_getenv(var));
 			tmp = ft_strjoin(tmp, ft_getenv(var));
 			i += ft_strlen(var);
 			t = i + 1;
@@ -104,8 +103,10 @@ int	expander(char **args)
 	{
 		if ((*args)[i] == -1)
 			check_quotes(SET, (*args)[i]);
-		if((*args)[i] == '$' && (ft_isprint((*args)[i + 1]) || (*args)[i + 1] == '$'))
+		if((*args)[i] == '$' && ft_isprint((*args)[i + 1]))
 		{
+			if((*args)[i + 1] == '?')
+				break ;
 			if (!check_quotes(GET, 0))
 			{
 				*args = is_expand(*args);

@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 16:09:50 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/26 20:36:36 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/27 20:11:04 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	cmd_list(t_cmd_lexer *cmd_lx)
 {
 	t_cmd	*cmd;
 	int		first_arg;
-	//char	*r_quote;
 
 	first_arg = 0;
 	add_cmd_node(&cmd);

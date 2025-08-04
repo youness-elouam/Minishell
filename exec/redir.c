@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:03:28 by ael-boul          #+#    #+#             */
-/*   Updated: 2025/07/24 21:27:26 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/27 18:54:48 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ void	fd_reset(t_method method)
 	if (method == SET)
 	{
 		fd[0] = dup(STDIN_FILENO);
-		if(fd[0] == -1)
+		if (fd[0] == -1)
 			perror("error : dup");
 		fd[1] = dup(STDOUT_FILENO);
-		if(fd[1] == -1)
+		if (fd[1] == -1)
 			perror("error : dup");
 	}
 	if (method == RESET)

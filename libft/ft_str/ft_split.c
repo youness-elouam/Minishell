@@ -6,13 +6,12 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 09:41:39 by ael-boul          #+#    #+#             */
-/*   Updated: 2025/07/27 03:00:00 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/07/27 18:41:25 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "../../includes/minishell.h"
-
 
 static size_t	count_words(const char *str, char sep)
 {
