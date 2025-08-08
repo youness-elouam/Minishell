@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 00:20:16 by yel-ouam          #+#    #+#             */
-/*   Updated: 2025/07/27 16:14:07 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/08/08 16:32:18 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ void print_cmd_list()
 		printf("{args} -> ");
 		if (!cmd->args)
 			printf("NULL\n");
-		while (cmd->args[i])
-			printf("[%s]", cmd->args[i++]);
+		else
+			while (cmd->args[i])
+				printf("[%s]", cmd->args[i++]);
 		printf("\n");
 		if (cmd->redirections)
 		{
@@ -128,7 +129,7 @@ static void	exec_one_cmd(t_cmd *cmd, t_mini *mini,
 		exec_child(cmd, mini, info);
 	}
 	waitpid(pid, &mini->status, 0);
-	close_and_update_pipe(&prev_pipe, pipefd, has_next);
+	close_and_update_pigitpe(&prev_pipe, pipefd, has_next);
 }
 
 void	exec_pipeline(t_mini *mini)
@@ -155,7 +156,7 @@ int	minishell(t_mini *mini)
 {
 	mini->parent = 1;
 	if (mini->start_cmd && !mini->start_cmd->next
-		&& is_builtin(mini->start_cmd->args[0]))
+		&& mini->start_cmd->cmd && is_builtin(mini->start_cmd->args[0]))
 	{
 		fd_reset(SET);
 		if (handle_redirs(mini->start_cmd->redirections, mini) == 0)
@@ -194,9 +195,9 @@ int	minishell_loop(char **env)
 			add_history(line);
 			cmd_handling(line);
 			mini.start_cmd = *get_cmd_head(GET, NULL);
-			if (mini.start_cmd != NULL && mini.start_cmd->cmd)
+			if (mini.start_cmd != NULL)
 				minishell(&mini);
-			//print_cmd_list();
+			print_cmd_list();
 			free_array(g_n.my_env);
 			get_cmd_head(RESET, NULL);
 			get_redi_head(RESET, NULL);

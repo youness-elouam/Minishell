@@ -6,7 +6,7 @@
 /*   By: yel-ouam <yel-ouam@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 19:40:28 by ael-boul          #+#    #+#             */
-/*   Updated: 2025/07/27 21:54:11 by yel-ouam         ###   ########.fr       */
+/*   Updated: 2025/08/08 16:30:17 by yel-ouam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	close_and_update_pipe(int *prev_pipe, int *pipefd, int has_next)
 {
+	printf("--------------------%d\n", *prev_pipe);
 	if (*prev_pipe != -1)
 		close(*prev_pipe);
 	if (has_next)
@@ -54,7 +55,13 @@ void	exec_child(t_cmd *cmd, t_mini *mini, t_exec_info info)
 		return ;
 	}
 	setup_pipes_and_redirs(cmd, mini, info);
-	path = get_cmd_path(cmd->args[0], mini->env);
+	if (cmd->cmd)
+		path = get_cmd_path(cmd->args[0], mini->env);
+	else
+	{
+		get_malloc_head(RESET, NULL);
+		exit(0) ;
+	}
 	if (is_builtin(cmd->args[0]))
 		exit(exec_builtin(cmd->args, mini));
 	if (!path)
@@ -63,8 +70,9 @@ void	exec_child(t_cmd *cmd, t_mini *mini, t_exec_info info)
 		ft_putendl_fd(": command not found", STDERR_FILENO);
 		get_malloc_head(RESET, NULL);
 		mini->ret = 127;
-		return ;
+		exit(0) ;
 	}
 	magic_box(path, cmd, mini->env);
-	return ;
+	get_malloc_head(RESET, NULL);
+	exit(0) ;
 }
